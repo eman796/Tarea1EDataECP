@@ -34,68 +34,84 @@ void Lista::AgregarAlInicio(int dato) {
     primero=Auxiliar;//El primer nodo de la lista es asignado al nodo Auxiliar
 }
 void Lista::AgregarAlFinal(int dato) {
-    if(ultimo==NULL) {//Comprueba si existe el ultimo elemento de la lista. De ser así, se pasa al else, pero si la lista esta vacia, salta este mensaje
-        std::cout<<"No se puede agregar al final de una lista vacia"<<std::endl;
-    }
-    else {//No voy a comentar nada aqui, ya que es lo mismo que las lineas 31 a 34
-        Auxiliar = new (Nodo);
-        Auxiliar->dato = dato;
-        ultimo->siguiente = Auxiliar;
-        primero = Auxiliar;
-    }
-    primero->siguiente=NULL;//Hace que el primer nodo del primer nodo sea nulo
+
+    Auxiliar = new (Nodo);
+    Auxiliar->dato = dato;
+    Auxiliar->siguiente = ultimo;
+    primero = Auxiliar;
 }
 void Lista::EliminarAlFinal() {
-    if (primero == NULL) {//Linea 37
-        std::cout << "No se puede eliminar al inicio de una lista vacia" << std::endl;
+    if (primero == NULL) {
+        std::cout << "No hay datos en la lista" << std::endl;
     } else {
-        if (Auxiliar == ultimo) {//Si mel puntero auxiliar es igual al ultimo
-            if (Auxiliar == primero) {// Si mel puntero auxiliar es igual al primero
-                delete primero;// Elimina el primer nodo de la lista
-                primero = NULL;// Hace que el primer nodo del primer nodo sea nulo
-                ultimo = NULL;// Hace que el ultimo nodo del primer nodo sea nulo
-                std::cout << "valor eliminado en la ultima posicion";
-            } else {//Si el dato auxiliar no es el primero
-
-                delete ultimo;// Elimina el ultimo dato de la lista
-                ultimo = Aux2;//El ultimo valor se asigna al dato auxiliar
-                ultimo->siguiente = NULL;// Hace que el ultimo nodo del ultimo nodo sea nulo
-                std::cout << "Valor de la ultima posicion eliminada";
+        if (Auxiliar == primero) {
+            if (Auxiliar == primero) {
+                delete primero;
+                ultimo = NULL;
+                ultimo = NULL;
+                std::cout << "Adios valor de la última posicion";
+            } else {
+                delete ultimo;
+                ultimo = Aux2;
+                ultimo->siguiente = NULL;
+                std::cout << "Este es el último valor eliminado" << std::endl;
+                Aux2 = Auxiliar;
+                Auxiliar = Auxiliar->siguiente;
             }
+
         }
+        Auxiliar = primero->siguiente;
+        delete primero;
+        primero = Auxiliar;
+        std::cout << "Se va a eliminar el dato #1 de la lista";
+        return;
     }
 }
 void Lista::EliminarAlInicio() {
-    if (primero == NULL) {//Linea 37
-        std::cout << "Antes de eliminar algun dato, debe haber un dato, estúpido" << std::endl;
-    } else {//Si el primer nodo no es nulo
-        if (Auxiliar == primero) {// Si el puntero auxiliar es igual al primero
-                delete primero;// Elimina el primer nodo de la lista
-                primero = NULL;// Hace que el primer nodo del primer nodo sea nulo
-                ultimo = NULL;// Hace que el ultimo nodo del primer nodo sea nulo
-                std::cout << "valor eliminado en la primera posicion";
-            } else {// Si el dato auxiliar no es el primero
-                delete ultimo;// Elimina el ultimo dato de la lista
-                ultimo = Aux2;// El ultimo valor se asigna al dato auxiliar2
-                ultimo->siguiente = NULL;// Hace que el ultimo nodo del ultimo nodo sea nulo
-                std::cout << "Valor de la ultima posicion eliminada";
+    if (ultimo == NULL) {
+        std::cout << "No hay datos en la lista" << std::endl;
+    } else {
+        if (Auxiliar == ultimo) {
+            if(Auxiliar==ultimo) {
+                delete ultimo;
+                ultimo = NULL;
+                ultimo = NULL;
+                std::cout << "Adios valor de la última posicion";
+            }else {
+                delete ultimo;
+                ultimo = Aux2;
+                ultimo->siguiente = NULL;
+                std::cout << "Este es el último valor eliminado" << std::endl;
+                Aux2 = Auxiliar;
+                Auxiliar = Auxiliar->siguiente;
             }
+
         }
+        Auxiliar = ultimo->siguiente;
+        delete ultimo;
+        ultimo = Auxiliar;
+        std::cout << "Se va a eliminar el dato #1 de la lista";
+        return;
     }
+
+
+    Auxiliar = ultimo->siguiente;
+}
+
+
+
 void Lista::lista() {
     if (primero == NULL) { // Si el primer dato no existe, la lista está vacía.
         std::cout << "No hay datos en la lista" << std::endl;
     } else {
         Auxiliar = primero;
-        std::cout << "Este es el primer elemento de la lista: " << Auxiliar->dato << std::endl;
-        while (Auxiliar != NULL) {
-            if (Auxiliar->siguiente == NULL) {
-                std::cout << "Este es el último elemento de la lista: " << Auxiliar->dato << std::endl;
-            }
-            Auxiliar = Auxiliar->siguiente;
+        while (Auxiliar != NULL) {//Mientras el dato auxiliar no este nulo
+            std::cout << "Elemento: " << Auxiliar->dato << std::endl;//Se imprimen los elementos
+            Auxiliar = Auxiliar->siguiente;//
         }
     }
 }
+
 
 
 
